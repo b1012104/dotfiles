@@ -91,7 +91,9 @@ syntax on
 
 " -------- File settings --------
 " Backup directory
-set backupdir=~/vimbackup
+if isdirectory('~/vimbackup') > 0
+	set backupdir=~/vimbackup
+endif
 " Enable clip board
 set clipboard=unnamed,unnamedplus
 " Do not make swap file
