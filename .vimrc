@@ -91,7 +91,7 @@ syntax on
 
 " -------- File settings --------
 " Backup directory
-if isdirectory('~/vimbackup') > 0
+if isdirectory(expand("~/vimbackup"))
 	set backupdir=~/vimbackup
 endif
 " Enable clip board
