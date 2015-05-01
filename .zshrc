@@ -48,7 +48,7 @@ alias tmux='tmux -2'
 #}
 
 function cdls() {
-	\cd $1 && ls;
+	\cd "$@" && ls;
 }
 alias cd='cdls'
 

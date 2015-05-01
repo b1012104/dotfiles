@@ -57,7 +57,7 @@ set tabstop=4
 " Space when auto indent
 set shiftwidth=4
 " Expand tabs
-"set expandtab
+set expandtab
 " C indent
 set cindent
 " Set scroll offset
