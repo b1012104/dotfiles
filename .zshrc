@@ -6,7 +6,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt hist_ignore_dups
 setopt share_history
-setopt hist_ignore_space	# don't register history when start with space
+setopt hist_ignore_space	# do not register in the history when start with space
 
 #History settings
 autoload -U history-search-end
@@ -73,21 +73,6 @@ RPROMPT='%B[%j] !%b' # job num history num
 
 autoload -U colors; colors	# for color
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
-# Print vi mode
-#function zle-line-init zle-keymap-select {
-#	case $KEYMAP in
-#		vicmd)
-#		RPROMPT="%{${fg[green]}%}[NORMAL]%{${reset_color}%}"
-#		;;
-#		main|viins)
-#		RPROMPT="%{${fg[red]}%}[INSERT]%{${reset_color}%}"
-#		;;
-#	esac
-#	zle reset-prompt
-#}
-#zle -N zle-line-init
-#zle -N zle-keymap-select
 
 # Incremental search
 bindkey '^P' history-beginning-search-backward-end
