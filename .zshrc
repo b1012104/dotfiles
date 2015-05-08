@@ -83,12 +83,17 @@ bindkey '^N' history-beginning-search-forward-end
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z} r:|[-_.]=**'
 zstyle ':completion:*' format '%BCompleting %d%b'
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*:(less|rm|vi):*' ignore-line true
+zstyle ':completion:*:(less|rm|diff|vimdiff):*' ignore-line true
 zstyle ':completion:*:*:(^(rm|unlink|mv)):*:*files' ignored-patterns '?*.o' '*~'
+#zstyle ':completion:*:*:(vi|vim):*:*files' ignored-patterns '*.h'
 autoload -U compinit && compinit
 
 # shell ctrl-s ctrl-q
 stty stop undef
+
+# keychain setting
+keychain /home/b1012104/.ssh/id_rsa_github > /dev/null 2>&1
+source $HOME/.keychain/${HOSTNAME}-sh
 
 # Change keyboard type into US
 #setxkbmap us -model us101
