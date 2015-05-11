@@ -92,8 +92,8 @@ autoload -U compinit && compinit
 stty stop undef
 
 # keychain setting
-keychain /home/b1012104/.ssh/id_rsa_github > /dev/null 2>&1
-source $HOME/.keychain/${HOSTNAME}-sh
+#keychain /home/b1012104/.ssh/id_rsa_github > /dev/null 2>&1
+#source $HOME/.keychain/${HOSTNAME}-sh
 
 # Change keyboard type into US
 #setxkbmap us -model us101
