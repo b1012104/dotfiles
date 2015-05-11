@@ -90,8 +90,8 @@ zstyle ':completion:*:*:(vi|vim|vimdiff|less|diff|cat):*' ignored-patterns '*.o'
 # Disable ctrl-s ctrl-q
 stty stop undef
 
-## keychain setting
-#keychain /home/b1012104/.ssh/id_rsa_github > /dev/null 2>&1
+# keychain setting
+#keychain ~/.ssh/id_rsa_github > /dev/null 2>&1
 #source $HOME/.keychain/${HOSTNAME}-sh
 
 ## Change keyboard type into US
