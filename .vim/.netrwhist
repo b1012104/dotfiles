@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/b1012104/work/open/curses/ncurses_programs'
 let g:netrw_dirhist_2='/home/b1012104/work/open/curses/ncurses_programs/menus'
 let g:netrw_dirhist_3='/home/b1012104/work/open/curses'
 let g:netrw_dirhist_4='/home/b1012104/programming/gnu/glibc-2.21/socket'
 let g:netrw_dirhist_5='/home/b1012104/.vim'
+let g:netrw_dirhist_6='/home/b1012104/work/fca/result'

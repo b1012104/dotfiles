@@ -1,22 +1,30 @@
-# Created by newuser for 4.3.10
+# zsh 5.0.2 (i486-slackware-linux-gnu)
+autoload -U compinit && compinit
 
+## History
 # History options
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt hist_ignore_dups
 setopt share_history
-setopt hist_ignore_space	# do not register in the history when start with space
+setopt hist_ignore_space
 
-#History settings
+# History settings
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
-# Options
-setopt PROMPT_BANG # for prompt '!'
+## Options
+# for prompt '!'
+setopt PROMPT_BANG
+# Do not beep
+setopt NO_LIST_BEEP
+# Enable extended_glob
+setopt EXTENDED_GLOB
+#setopt nolistbeep
 
-# User aliases
+## User aliases
 # ls aliases
 alias ls='ls --color=auto'
 alias l='ls -l'
@@ -36,66 +44,57 @@ alias f='fg'
 alias b='bg'
 alias dirs='dirs -v'
 alias tmux='tmux -2'
-
-## Suffix aliases
-#alias -s c=rungcc
-#
-## User funection
-#function rungcc () {
-#	DIR=`dirname $1`
-#	gcc $1 && shift && $DIR/tmp.out $@
-#	rm -f $DIR/tmp.out
-#}
-
-function cdls() {
-	\cd "$@" && ls;
-}
 alias cd='cdls'
 
-# Do not beep
-setopt NO_LIST_BEEP
-#setopt nolistbeep
-setopt EXTENDED_GLOB
+## Functions
+function cdls() {
+    \cd "$@" && ls;
+}
 
-# Keybind
-bindkey -v	# vi keybind
+## Keybind
+# default keybind
+bindkey -v
 
-# ZLE vi configure
+# ZLE vi keybind
 zle -A backward-kill-word vi-backward-kill-word
 zle -A backward-delete-char vi-backward-delete-char
-bindkey "[3~" vi-delete-char	# DEL key enable
+bindkey -v "[3~" vi-delete-char # DEL key enable
 bindkey -v "^A" push-line
+bindkey -v '^P' history-beginning-search-backward-end
+bindkey -v '^N' history-beginning-search-forward-end
+bindkey -v '^Xh' _complete_help
 
-# Prompt configure
-#PROMPT='%n:%~>'	# left prompt enable
-PROMPT='%n@%M:%~>'	# left prompt enable
-RPROMPT='%B[%j] !%b' # job num history num
+## Prompt configure
+# left prompt enable
+#PROMPT='%n:%~>'
+# left prompt enable
+PROMPT='%n@%M:%~>'
+# print job num and history num
+RPROMPT='%B[%j] !%b'
 
+# Enable colors
 autoload -U colors; colors	# for color
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-# Incremental search
-bindkey '^P' history-beginning-search-backward-end
-bindkey '^N' history-beginning-search-forward-end
+## Completion
+# compdef
+compdef cdls=cd
 
-# Completion
-#zstyle ':completion:*' menu true
+# zstyle settings
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z} r:|[-_.]=**'
 zstyle ':completion:*' format '%BCompleting %d%b'
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*:(less|rm|diff|vimdiff):*' ignore-line true
-zstyle ':completion:*:*:(^(rm|unlink|mv)):*:*files' ignored-patterns '?*.o' '*~'
-#zstyle ':completion:*:*:(vi|vim):*:*files' ignored-patterns '*.h'
-autoload -U compinit && compinit
+zstyle ':completion:*:*:(rm|diff|vimdiff|vi):*' ignore-line true
+zstyle ':completion:*:*:(vi|vim|vimdiff|less|diff|cat):*' ignored-patterns '*.o' '*~'
 
-# shell ctrl-s ctrl-q
+# Disable ctrl-s ctrl-q
 stty stop undef
 
-# keychain setting
+## keychain setting
 #keychain /home/b1012104/.ssh/id_rsa_github > /dev/null 2>&1
 #source $HOME/.keychain/${HOSTNAME}-sh
 
-# Change keyboard type into US
+## Change keyboard type into US
 #setxkbmap us -model us101
 # Japanese keyboard setting
 #setxkbmap -model jp106
