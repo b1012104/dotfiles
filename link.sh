@@ -10,18 +10,22 @@ function usage()
 
 function do_clean()
 {
-    rm -f ${dotfiles}
+    for dotfile in ${dotfiles}
+    do
+        if [ -e $HOME/${dotfile} ]; then
+            unlink $HOME/${dotfile}
+        fi
+    done
 }
 
 function do_link()
 {
     for dotfile in ${dotfiles}
     do
-        if [ ! -e ${dotfile} ]; then
-            ln -s ${dotdir}/${dotfile} ${dotfile}
+        if [ ! -e $HOME/${dotfile} ]; then
+            ln -s $HOME/${dotdir}/${dotfile} $HOME/${dotfile}
         fi
     done
-    exit 0
 }
 
 cd
