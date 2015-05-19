@@ -1,4 +1,4 @@
-# zsh 5.0.2 (i486-slackware-linux-gnu)
+# zshrc
 autoload -U compinit && compinit
 
 ## History
