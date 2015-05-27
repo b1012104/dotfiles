@@ -1,39 +1,39 @@
 " ~/.vimrc (configuration file for vim only)
 " skeletons
 function! SKEL_spec()
-	0r /usr/share/vim/current/skeletons/skeleton.spec
-	language time en_US
-	if $USER != ''
-	    let login = $USER
-	elseif $LOGNAME != ''
-	    let login = $LOGNAME
-	else
-	    let login = 'unknown'
-	endif
-	let newline = stridx(login, "\n")
-	if newline != -1
-	    let login = strpart(login, 0, newline)
-	endif
-	if $HOSTNAME != ''
-	    let hostname = $HOSTNAME
-	else
-	    let hostname = system('hostname -f')
-	    if v:shell_error
-		let hostname = 'localhost'
-	    endif
-	endif
-	let newline = stridx(hostname, "\n")
-	if newline != -1
-	    let hostname = strpart(hostname, 0, newline)
-	endif
-	exe "%s/specRPM_CREATION_DATE/" . strftime("%a\ %b\ %d\ %Y") . "/ge"
-	exe "%s/specRPM_CREATION_AUTHOR_MAIL/" . login . "@" . hostname . "/ge"
-	exe "%s/specRPM_CREATION_NAME/" . expand("%:t:r") . "/ge"
-	setf spec
+    0r /usr/share/vim/current/skeletons/skeleton.spec
+    language time en_US
+    if $USER != ''
+        let login = $USER
+    elseif $LOGNAME != ''
+        let login = $LOGNAME
+    else
+        let login = 'unknown'
+    endif
+    let newline = stridx(login, "\n")
+    if newline != -1
+        let login = strpart(login, 0, newline)
+    endif
+    if $HOSTNAME != ''
+        let hostname = $HOSTNAME
+    else
+        let hostname = system('hostname -f')
+        if v:shell_error
+        let hostname = 'localhost'
+        endif
+    endif
+    let newline = stridx(hostname, "\n")
+    if newline != -1
+        let hostname = strpart(hostname, 0, newline)
+    endif
+    exe "%s/specRPM_CREATION_DATE/" . strftime("%a\ %b\ %d\ %Y") . "/ge"
+    exe "%s/specRPM_CREATION_AUTHOR_MAIL/" . login . "@" . hostname . "/ge"
+    exe "%s/specRPM_CREATION_NAME/" . expand("%:t:r") . "/ge"
+    setf spec
 endfunction
 augroup SKEL
-	autocmd!
-	autocmd BufNewFile	*.spec	call SKEL_spec()
+    autocmd!
+    autocmd BufNewFile    *.spec    call SKEL_spec()
 augroup END
 " filetypes
 filetype plugin on
@@ -92,7 +92,7 @@ syntax on
 " -------- File settings --------
 " Backup directory
 if isdirectory(expand("~/vimbackup"))
-	set backupdir=~/vimbackup
+    set backupdir=~/vimbackup
 endif
 " Enable clip board
 set clipboard=unnamed,unnamedplus
@@ -128,19 +128,19 @@ inoremap <expr><CR> <SID>ExCr()
 
 " -------- User functions --------
 function! s:ExCr()
-	if col('.') != col('$')
-		return "\<CR>"
-	endif
-	let l = getline('.')
-	if l =~ '{$'
-		return "\<CR>}\<Up>\<End>\<CR>"
-	"elseif l =~ '($'
-	"	return "\<CR>)\<Up>\<End>\<CR>"
-	"elseif l =~ '[$'
-	"	return "\<CR>]\<Up>\<End>\<CR>"
-	else
-		return "\<CR>"
-	endif
+    if col('.') != col('$')
+        return "\<CR>"
+    endif
+    let l = getline('.')
+    if l =~ '{$'
+        return "\<CR>}\<Up>\<End>\<CR>"
+    "elseif l =~ '($'
+    "    return "\<CR>)\<Up>\<End>\<CR>"
+    "elseif l =~ '[$'
+    "    return "\<CR>]\<Up>\<End>\<CR>"
+    else
+        return "\<CR>"
+    endif
 endfunction
 
 function! EraseWhiteSpace()
@@ -148,11 +148,11 @@ function! EraseWhiteSpace()
 endfunction
 
 function! PrintDate()
-	:r! date +\%Y/\%m/\%d
+    :r! date +\%Y/\%m/\%d
 endfunction
 
 function! SayHello()
-	echo "Hello, World!"
+    echo "Hello, World!"
 endfunction
 
 " -------- User commands --------
@@ -163,21 +163,22 @@ command! Date call PrintDate()
 
 " -------- My autocmd --------
 augroup MYAUTOCMD
-	autocmd!
-	autocmd WinEnter,VimEnter * match Error /\s\+$/
+    autocmd!
+    autocmd WinEnter,VimEnter * match Error /\s\+$/
 augroup END
 
 augroup CMDWINDOW
-	autocmd!
-	autocmd winEnter,VimEnter * nnoremap <C-m> o<ESC>
-	autocmd CmdwinEnter * nnoremap <C-m> <C-m>
-	autocmd Cmdwinleave * nnoremap <C-m> o<ESC>
+    autocmd!
+    autocmd winEnter,VimEnter * nnoremap <C-m> o<ESC>
+    autocmd CmdwinEnter * nnoremap <C-m> <C-m>
+    autocmd Cmdwinleave * nnoremap <C-m> o<ESC>
 augroup END
 
 " -------- Color scheme --------
-colorscheme jellybeans
-if $TERM != 'screen-256colors'
-	set t_Co=256
+if filereadable(expand("~/.vim/colors/jellybeans.vim"))
+    colorscheme jellybeans
+    if $TERM != 'screen-256colors'
+    set t_Co=256
+    endif
 endif
-
 " ~/.vimrc end
