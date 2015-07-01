@@ -39,6 +39,26 @@ augroup END
 filetype plugin on
 filetype indent on
 
+" Neobundle Settings
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+call neobundle#begin(expand('~/.vim/bundle'))
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Plugins
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'PeterRincker/vim-argumentative'
+NeoBundle 'easymotion/vim-easymotion'
+nmap s <Plug>(easymotion-s2)
+nmap g/ <Plug>(easymotion-sn)
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_enter_jump_first = 1
+" Plugins end
+
+NeoBundleCheck
+call neobundle#end()
+" Neobundle end
+
 " -------- User settings --------
 " Use English
 language C
