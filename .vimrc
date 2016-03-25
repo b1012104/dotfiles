@@ -1,62 +1,41 @@
-" ~/.vimrc (configuration file for vim only)
-" skeletons
-function! SKEL_spec()
-    0r /usr/share/vim/current/skeletons/skeleton.spec
-    language time en_US
-    if $USER != ''
-        let login = $USER
-    elseif $LOGNAME != ''
-        let login = $LOGNAME
-    else
-        let login = 'unknown'
-    endif
-    let newline = stridx(login, "\n")
-    if newline != -1
-        let login = strpart(login, 0, newline)
-    endif
-    if $HOSTNAME != ''
-        let hostname = $HOSTNAME
-    else
-        let hostname = system('hostname -f')
-        if v:shell_error
-        let hostname = 'localhost'
-        endif
-    endif
-    let newline = stridx(hostname, "\n")
-    if newline != -1
-        let hostname = strpart(hostname, 0, newline)
-    endif
-    exe "%s/specRPM_CREATION_DATE/" . strftime("%a\ %b\ %d\ %Y") . "/ge"
-    exe "%s/specRPM_CREATION_AUTHOR_MAIL/" . login . "@" . hostname . "/ge"
-    exe "%s/specRPM_CREATION_NAME/" . expand("%:t:r") . "/ge"
-    setf spec
-endfunction
-augroup SKEL
-    autocmd!
-    autocmd BufNewFile    *.spec    call SKEL_spec()
-augroup END
 " filetypes
+
+" const variable
+let s:FALSE = 0
+let s:TRUE  = !s:FALSE
+
 filetype plugin on
 filetype indent on
 
 " Neobundle Settings
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.vim/bundle'))
-NeoBundleFetch 'Shougo/neobundle.vim'
+if has('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-" Plugins
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'PeterRincker/vim-argumentative'
-NeoBundle 'easymotion/vim-easymotion'
-nmap s <Plug>(easymotion-s2)
-nmap g/ <Plug>(easymotion-sn)
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_use_upper = 1
-let g:EasyMotion_enter_jump_first = 1
-" Plugins end
+let s:is_neobundle_installed = s:TRUE
+try
+    call neobundle#begin(expand('~/.vim/bundle'))
+catch /^Vim\%((\a\+)\)\=:E117/ " catch error E117: Unkown function
+    let s:is_neobundle_installed = s:FALSE
+    set title titlestring=NeoBundle\ Error
+endtry
 
-NeoBundleCheck
-call neobundle#end()
+if s:is_neobundle_installed
+    NeoBundleFetch 'Shougo/neobundle.vim'
+    " Plugins
+    NeoBundle 'tpope/vim-surround'
+    NeoBundle 'PeterRincker/vim-argumentative'
+    NeoBundle 'easymotion/vim-easymotion'
+    nmap s <Plug>(easymotion-s2)
+    nmap g/ <Plug>(easymotion-sn)
+    let g:EasyMotion_smartcase = 1
+    let g:EasyMotion_use_upper = 1
+    let g:EasyMotion_enter_jump_first = 1
+    " Plugins end
+
+    NeoBundleCheck
+    call neobundle#end()
+endif
 " Neobundle end
 
 " -------- User settings --------
@@ -72,12 +51,12 @@ set ignorecase
 set wildmenu
 " Show commands in the last of the screen
 set showcmd
-" Number of spaces that TAB
+" Number of spaces of TAB
 set tabstop=4
 " Space when auto indent
 set shiftwidth=4
 " Expand tabs
-set expandtab
+"set expandtab
 " C indent
 set cindent
 " Set scroll offset
