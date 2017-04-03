@@ -21,12 +21,36 @@ call dein#begin(s:dein_dir)
     call dein#add(s:dein_repo_dir)
     call dein#add('tpope/vim-surround')
     call dein#add('PeterRincker/vim-argumentative')
+    call dein#add('Shougo/neosnippet')
+    call dein#add('Shougo/neosnippet-snippets')
     call dein#add('easymotion/vim-easymotion')
+	" easymotion
     nmap s <Plug>(easymotion-s2)
     nmap g/ <Plug>(easymotion-sn)
     let g:EasyMotion_smartcase = 1
     let g:EasyMotion_use_upper = 1
     let g:EasyMotion_enter_jump_first = 1
+	" snippet
+	"Plugin key-mappings.
+	" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+	imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+	smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+	xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+	" SuperTab like snippets behavior.
+	" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+	imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+	"imap <expr><TAB>
+	" \ pumvisible() ? "\<C-n>" :
+	" \ neosnippet#expandable_or_jumpable() ?
+	" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+	smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+	\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+	" For conceal markers.
+	if has('conceal')
+	  set conceallevel=2 concealcursor=niv
+	  endif
     " Plugins end
 call dein#end()
 " dein end
