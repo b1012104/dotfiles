@@ -70,7 +70,7 @@ bindkey -v '^Xh' _complete_help
 # left prompt enable
 PROMPT='%n@%M:%~>'
 # print job num and history num
-RPROMPT='%B[%j] !%b'
+RPROMPT='%B%j %!%b'
 
 # Enable colors
 autoload -U colors; colors	# for color
