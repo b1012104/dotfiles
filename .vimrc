@@ -7,35 +7,29 @@ let s:TRUE  = !s:FALSE
 filetype plugin on
 filetype indent on
 
-" Neobundle Settings
-if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
+" Dein Settings
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 endif
 
-let s:is_neobundle_installed = s:TRUE
-try
-    call neobundle#begin(expand('~/.vim/bundle'))
-    let s:is_neobundle_installed = s:FALSE
-    set title titlestring=NeoBundle\ Error
-endtry
-
-if s:is_neobundle_installed
-    NeoBundleFetch 'Shougo/neobundle.vim'
+call dein#begin(s:dein_dir)
     " Plugins
-    NeoBundle 'tpope/vim-surround'
-    NeoBundle 'PeterRincker/vim-argumentative'
-    NeoBundle 'easymotion/vim-easymotion'
+    call dein#add(s:dein_repo_dir)
+    call dein#add('tpope/vim-surround')
+    call dein#add('PeterRincker/vim-argumentative')
+    call dein#add('easymotion/vim-easymotion')
     nmap s <Plug>(easymotion-s2)
     nmap g/ <Plug>(easymotion-sn)
     let g:EasyMotion_smartcase = 1
     let g:EasyMotion_use_upper = 1
     let g:EasyMotion_enter_jump_first = 1
     " Plugins end
-
-    NeoBundleCheck
-    call neobundle#end()
-endif
-" Neobundle end
+call dein#end()
+" dein end
 
 " -------- User settings --------
 " Use English
