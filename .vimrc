@@ -15,7 +15,6 @@ endif
 let s:is_neobundle_installed = s:TRUE
 try
     call neobundle#begin(expand('~/.vim/bundle'))
-catch /^Vim\%((\a\+)\)\=:E117/ " catch error E117: Unkown function
     let s:is_neobundle_installed = s:FALSE
     set title titlestring=NeoBundle\ Error
 endtry
