@@ -85,7 +85,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z} r:|[-_.]=**'
 zstyle ':completion:*' format '%BCompleting %d%b'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:*:(rm|diff|vimdiff|vi):*' ignore-line true
-zstyle ':completion:*:*:(vi|vim|vimdiff|less|diff|cat):*' ignored-patterns '*.o' '*~'
+zstyle ':completion:*:*:(vi|vim|vimdiff|less|diff|cat):*' ignored-patterns '*.o' '*~' '*.class'
 
 # Disable ctrl-s ctrl-q
 stty stop undef
