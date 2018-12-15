@@ -45,6 +45,7 @@ alias b='bg'
 alias dirs='dirs -v'
 alias tmux='tmux -2'
 alias cd='cdls'
+alias vi='vim'
 
 ## Functions
 function cdls() {

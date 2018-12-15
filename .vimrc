@@ -1,13 +1,9 @@
 " filetypes
-
-" const variable
-let s:FALSE = 0
-let s:TRUE  = !s:FALSE
-
 filetype plugin on
 filetype indent on
-
+"
 " Dein Settings
+"
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
@@ -55,7 +51,9 @@ call dein#begin(s:dein_dir)
 call dein#end()
 " dein end
 
-" -------- User settings --------
+"
+" User settings
+"
 " Use English
 language C
 " Disable compatible mode
@@ -73,7 +71,7 @@ set tabstop=4
 " Space when auto indent
 set shiftwidth=4
 " Expand tabs
-"set expandtab
+set expandtab
 " C indent
 set cindent
 " Set scroll offset
@@ -85,10 +83,14 @@ set hidden
 " Cmdline history
 set history=50
 
-" -------- Plugin settings --------
+"
+" Plugin settings
+"
 let g:netrw_altv=1
 
-" -------- Display settings --------
+"
+" Display settings
+"
 " Show line numbers
 set number
 " Show cursor line
@@ -104,8 +106,12 @@ set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«
 set ruler
 " Syntax highlight on
 syntax on
+" encode the file automatically
+set fileencodings=utf8,sjis
 
-" -------- File settings --------
+"
+" File settings
+"
 " Backup directory
 if isdirectory(expand("~/vimbackup"))
     set backupdir=~/vimbackup
@@ -115,7 +121,9 @@ set clipboard=unnamed,unnamedplus
 " Do not make swap file
 set noswapfile
 
-" -------- Map settings --------
+"
+" Map settings
+"
 nnoremap <C-c> I/* <ESC>A */<ESC>F*F*<ESC>
 "nnoremap <C-m> o<ESC>
 noremap <F4> :<C-u>sp $MYVIMRC<C-m>
@@ -142,7 +150,9 @@ noremap : ;
 ":inoremap { {<CR>}<ESC>ko
 inoremap <expr><CR> <SID>ExCr()
 
-" -------- User functions --------
+"
+" User functions
+"
 function! s:ExCr()
     if col('.') != col('$')
         return "\<CR>"
@@ -171,13 +181,17 @@ function! SayHello()
     echo "Hello, World!"
 endfunction
 
-" -------- User commands --------
+"
+" User commands
+"
 " Erase white space at the end of line
 command! Ews call EraseWhiteSpace()
 " Print today's date
 command! Date call PrintDate()
 
-" -------- My autocmd --------
+"
+" Autocmd
+"
 augroup MYAUTOCMD
     autocmd!
     autocmd WinEnter,VimEnter * match Error /\s\+$/
@@ -190,7 +204,9 @@ augroup CMDWINDOW
     autocmd Cmdwinleave * nnoremap <C-m> o<ESC>
 augroup END
 
-" -------- Color scheme --------
+"
+" Color scheme
+"
 if filereadable(expand("~/.vim/colors/jellybeans.vim"))
     colorscheme jellybeans
     if $TERM != 'screen-256colors'
