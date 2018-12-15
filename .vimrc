@@ -84,11 +84,6 @@ set hidden
 set history=50
 
 "
-" Plugin settings
-"
-let g:netrw_altv=1
-
-"
 " Display settings
 "
 " Show line numbers
@@ -213,4 +208,12 @@ if filereadable(expand("~/.vim/colors/jellybeans.vim"))
     set t_Co=256
     endif
 endif
+
+"
+" netrw settings
+"
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_altv = 1
+
 " ~/.vimrc end
