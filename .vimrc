@@ -1,6 +1,7 @@
 " filetypes
 filetype plugin on
 filetype indent on
+
 "
 " Dein Settings
 "
@@ -20,33 +21,33 @@ call dein#begin(s:dein_dir)
     call dein#add('Shougo/neosnippet')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('easymotion/vim-easymotion')
-	" easymotion
+    " easymotion
     nmap s <Plug>(easymotion-s2)
     nmap g/ <Plug>(easymotion-sn)
     let g:EasyMotion_smartcase = 1
     let g:EasyMotion_use_upper = 1
     let g:EasyMotion_enter_jump_first = 1
-	" snippet
-	"Plugin key-mappings.
-	" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-	imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-	smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-	xmap <C-k>     <Plug>(neosnippet_expand_target)
+    " snippet
+    "Plugin key-mappings.
+    " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-	" SuperTab like snippets behavior.
-	" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-	imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-	"imap <expr><TAB>
-	" \ pumvisible() ? "\<C-n>" :
-	" \ neosnippet#expandable_or_jumpable() ?
-	" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-	smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-	\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+    " SuperTab like snippets behavior.
+    " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    "imap <expr><TAB>
+    " \ pumvisible() ? "\<C-n>" :
+    " \ neosnippet#expandable_or_jumpable() ?
+    " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-	" For conceal markers.
-	if has('conceal')
-	  set conceallevel=2 concealcursor=niv
-	  endif
+    " For conceal markers.
+    if has('conceal')
+      set conceallevel=2 concealcursor=niv
+      endif
     " Plugins end
 call dein#end()
 " dein end
@@ -64,6 +65,7 @@ set incsearch
 set ignorecase
 " Command-line completion
 set wildmenu
+set wildignorecase
 " Show commands in the last of the screen
 set showcmd
 " Number of spaces of TAB
@@ -136,7 +138,7 @@ noremap Y y$
 "noremap <C-U> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
 "noremap <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
 
-"change ';' and ':' in normal mode
+" switch between ';' and ':' in normal mode
 noremap ; :
 noremap : ;
 
