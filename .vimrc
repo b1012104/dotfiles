@@ -84,6 +84,8 @@ set mps+=<:>
 set hidden
 " Cmdline history
 set history=50
+" backspace setting
+set backspace=2
 
 "
 " Display settings
@@ -91,7 +93,7 @@ set history=50
 " Show line numbers
 set number
 " Show cursor line
-set cursorline
+"set cursorline
 " Always display status Line
 set laststatus=2
 " Status line settings
@@ -204,11 +206,11 @@ augroup END
 "
 " Color scheme
 "
-if filereadable(expand("~/.vim/colors/jellybeans.vim"))
-    colorscheme jellybeans
+if filereadable(expand("~/.vim/colors/srcery.vim"))
     if $TERM != 'screen-256colors'
-    set t_Co=256
+        set t_Co=256
     endif
+    colorscheme srcery
 endif
 
 "
